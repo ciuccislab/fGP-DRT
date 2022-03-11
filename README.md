@@ -29,10 +29,13 @@ pandas
 # Citation
 
 ```
-@article{maradesa2021probabilistic,
+@article{maradesa2022probabilistic,
   title={The Probabilistic Deconvolution of the Distribution of Relaxation Times with Finite Gaussian Processes},
   author={Maradesa, Adeleke and Py, Baptiste and Quattrocchi, Emanuele and Ciucci, Francesco},
-  year={2021}
+  journal={Electrochimica Acta},
+  pages={140119},
+  year={2022},
+  publisher={Elsevier}
 }
 
 ```
@@ -56,4 +59,4 @@ pandas
 
 [9] Quattrocchi, E., Wan, T. H., Belotti, A., Kim, D., Pepe, S., Kalinin, S. V., Ahmadi, M., and Ciucci, F. (2021). The deep-DRT: A deep neural network approach to deconvolve the distribution of relaxation times from multidimensional electrochemical impedance spectroscopy data. Electrochimica Acta, 139010. https://doi.org/10.1016/j.electacta.2021.139010
 
-[10] Maradesa, A., Py, B., Quattrocchi, E., & Ciucci, F. (2021). The Probabilistic Deconvolution of the Distribution of Relaxation Times with Finite Gaussian Processes, Chemistry,  https://doi.org/10.26434/chemrxiv-2021-g0mq2.
+[10] Maradesa, A., Py, B., Quattrocchi, E., & Ciucci, F. (2022). The probabilistic deconvolution of the distribution of relaxation times with finite Gaussian processes. Electrochimica Acta, 140119. https://doi.org/10.1016/j.electacta.2022.140119.
