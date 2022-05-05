@@ -2,7 +2,7 @@
 
 ## fGP-DRT: finite Gaussian Process Distribution of Relaxation Times
 
-This repository contains some of the source code used for the paper titled "The Probabilistic Deconvolution of the Distribution of Relaxation Times with Finite Gaussian Processes", the article is also available at "https://doi.org/10.1016/j.electacta.2022.140119".
+This repository contains some of the source code used for the paper titled "The Probabilistic Deconvolution of the Distribution of Relaxation Times with Finite Gaussian Processes" the article is also available at [Link](https://doi.org/10.1016/j.electacta.2022.140119) and in the docs folder.
 
 # Introduction
 Electrochemical impedance spectroscopy (EIS) is a tool widely used to study the properties of electrochemical systems. The distribution of relaxation times (DRT) is a widely used approach, in electrochemistry, biology and material science, for the analysis of electrochemical impedance 
@@ -59,4 +59,4 @@ pandas
 
 [9] Quattrocchi, E., Wan, T. H., Belotti, A., Kim, D., Pepe, S., Kalinin, S. V., Ahmadi, M., and Ciucci, F. (2021). The deep-DRT: A deep neural network approach to deconvolve the distribution of relaxation times from multidimensional electrochemical impedance spectroscopy data. Electrochimica Acta, 139010. https://doi.org/10.1016/j.electacta.2021.139010
 
-[10] Maradesa, A., Py, B., Quattrocchi, E., & Ciucci, F. (2022). The probabilistic deconvolution of the distribution of relaxation times with finite Gaussian processes. Electrochimica Acta, 140119. https://doi.org/10.1016/j.electacta.2022.140119.
+[10] Maradesa, A., Py, B., Quattrocchi, E., & Ciucci, F. (2022). The probabilistic deconvolution of the distribution of relaxation times with finite Gaussian processes. Electrochimica Acta, 413, 140119. https://doi.org/10.1016/j.electacta.2022.140119.
