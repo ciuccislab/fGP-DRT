@@ -2,7 +2,7 @@
 
 ## fGP-DRT: finite Gaussian Process Distribution of Relaxation Times
 
-This repository contains some of the source code used for the paper titled "The Probabilistic Deconvolution of the Distribution of Relaxation Times with Finite Gaussian Processes" the article is also available at [Link](https://doi.org/10.1016/j.electacta.2022.140119) and in the docs folder.
+This repository contains some of the source code used for the paper titled *The probabilistic deconvolution of the distribution of relaxation times with finite Gaussian processes*. Electrochimica Acta, 413, 140119. https://doi.org/10.1016/j.electacta.2022.140119. The article is available online at [Link](https://doi.org/10.1016/j.electacta.2022.140119) and in the docs folder.
 
 # Introduction
 Electrochemical impedance spectroscopy (EIS) is a tool widely used to study the properties of electrochemical systems. The distribution of relaxation times (DRT) is a widely used approach, in electrochemistry, biology and material science, for the analysis of electrochemical impedance 
