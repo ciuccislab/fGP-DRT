@@ -5,7 +5,8 @@ from numpy.random import randn
 from numpy.linalg import cholesky
 from numpy.matlib import repmat
 from math import pi, log, exp
-
+from numpy import linalg as la
+from numpy import *
 
 def kernel(log_tau, log_tau_prime, sigma_f, ell):
 
@@ -138,6 +139,55 @@ def compute_A_im(freq_vec, tau_vec):
             
     return out_A_im
 
+
+# Find the nearest positive-definite matrix
+
+#"""
+#Returns true when input is positive-definite, via Cholesky
+#is a matrix positive definite?
+#if input matrix is positive-definite (<=> Cholesky decomposable), then true is returned otherwise return false
+#"""
+
+def is_PD(A):
+      
+    try:
+        np.linalg.cholesky(A)
+        return True
+    except np.linalg.LinAlgError:
+        return False
+
+
+def nearest_PD(A):
+    
+    # based on 
+    # N.J. Higham (1988) https://doi.org/10.1016/0024-3795(88)90223-6
+    # and 
+    # https://www.mathworks.com/matlabcentral/fileexchange/42885-nearestspd
+
+    B = (A + A.T)/2
+    _, Sigma_mat, V = la.svd(B)
+
+    H = np.dot(V.T, np.dot(np.diag(Sigma_mat), V))
+
+    A_nPD = (B + H) / 2
+    A_symm = (A_nPD + A_nPD.T) / 2
+
+    k = 1
+    I = np.eye(A_symm.shape[0])
+
+    while not is_PD(A_symm):
+        eps = np.spacing(la.norm(A_symm))
+
+        # MATLAB's 'chol' accepts matrices with eigenvalue = 0, numpy does not not. 
+        # So where the matlab implementation uses 'eps(mineig)', we use the above definition.
+
+        min_eig = min(0, np.min(np.real(np.linalg.eigvals(A_symm))))
+        A_symm += I * (-min_eig * k**2 + eps)
+        k += 1
+
+    return A_symm
+
+    
 # calculate the negative marginal log-likelihood (NMLL)
 def NMLL_fct(theta, A, Z_exp_re_im, N_freqs, log_tau_vec):
 
@@ -162,6 +212,11 @@ def NMLL_fct(theta, A, Z_exp_re_im, N_freqs, log_tau_vec):
     Psi = 0.5*(Psi + Psi.T) # symmetrize
     
     # Cholesky decomposition of Psi
+    if(is_PD(Psi)==False):
+        Psi = nearestPD(Psi)
+    else:
+        Psi = Psi
+        
     L = np.linalg.cholesky(Psi)
     
     # solve for alpha
@@ -194,6 +249,11 @@ def NMLL_L_fct(theta, A, Z_exp_re_im, N_freqs, log_tau_vec):
     Psi = A@(Gamma@A.T)+(sigma_n**2)*np.eye(2*N_freqs)
     Psi = 0.5*(Psi + Psi.T) # symmetrize
     
+    if(is_PD(Psi)==False):
+        Psi = nearestPD(Psi)
+    else:
+        Psi = Psi
+        
     # Cholesky decomposition of Psi
     L = np.linalg.cholesky(Psi)
     
@@ -239,6 +299,13 @@ def generate_tmg(F, g, M, mu_r, initial_X, cov=True, L=1):
     if cov:
         mu = mu_r
         g = g + F@mu
+        
+        ## Nearest Positive Definite 
+        if(is_PD(M)==False):
+            M = nearestPD(M)
+        else:
+            M = M
+      
         R = cholesky(M)
         R = R.T #change the lower matrix to upper matrix
         F = F@R.T
@@ -247,6 +314,11 @@ def generate_tmg(F, g, M, mu_r, initial_X, cov=True, L=1):
     # using precision matrix
     else:
         r = mu_r
+        # Nearest Positive Definite 
+        if(is_PD(M)==False):
+            M = nearestPD(M)
+        else:
+            M = M
         R = cholesky(M)
         R = R.T #change the lower matrix to upper matrix
         mu = np.linalg.solve(R, np.linalg.solve(R.T, r))
