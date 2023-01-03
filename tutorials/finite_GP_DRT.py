@@ -213,7 +213,7 @@ def NMLL_fct(theta, A, Z_exp_re_im, N_freqs, log_tau_vec):
     
     # Cholesky decomposition of Psi
     if(is_PD(Psi)==False):
-        Psi = nearestPD(Psi)
+        Psi = nearest_PD(Psi)
     else:
         Psi = Psi
         
@@ -250,7 +250,7 @@ def NMLL_L_fct(theta, A, Z_exp_re_im, N_freqs, log_tau_vec):
     Psi = 0.5*(Psi + Psi.T) # symmetrize
     
     if(is_PD(Psi)==False):
-        Psi = nearestPD(Psi)
+        Psi = nearest_PD(Psi)
     else:
         Psi = Psi
         
@@ -302,7 +302,7 @@ def generate_tmg(F, g, M, mu_r, initial_X, cov=True, L=1):
         
         ## Nearest Positive Definite 
         if(is_PD(M)==False):
-            M = nearestPD(M)
+            M = nearest_PD(M)
         else:
             M = M
       
@@ -316,7 +316,7 @@ def generate_tmg(F, g, M, mu_r, initial_X, cov=True, L=1):
         r = mu_r
         # Nearest Positive Definite 
         if(is_PD(M)==False):
-            M = nearestPD(M)
+            M = nearest_PD(M)
         else:
             M = M
         R = cholesky(M)
