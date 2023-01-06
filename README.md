@@ -20,11 +20,11 @@ matplotlib
 pandas
 
 # Tutorials
-1. **example1_single ZARC Model.ipynb**: this notebook gives detail procedure of how to recover the DRT from the impedance generated using a single ZARC model consisting of a resistance placed in parallel to a constant phase element (CPE) The frequency range is from 1E-4 Hz to 1E4 Hz with 10 points per decade (ppd).
-2. **example2_double ZARC Model.ipynb** : this notebook demonstrates how the fGP-DRT can capture overlapping timescales with two ZARC models arranged in series. The frequency range is from 1E-4 Hz to 1E4 Hz with 10 ppd.
-3. **example3_single_ZARC_plus_an_inductor.pynb** : this notebook adds an inductor to the model used in "**example1_single ZARC Model.ipynb**"
-4. **example4_BLF_pO2_60percent_Temp_500_C.ipynb** : this notebook displays the DRT analysis of the BLF impedance spectra from fuel cell. The real experimental EIS data is read from a csv file, the DRT is predicted by the fGP-DRT model, the complete impedance is, therefore, recovered and compared with the equivalent circuit model (ECM) consisting of two ZARCs
-5. **example5_SCFN_3percent_H2O_Temp_500_C.ipynb** : this notebook shows the DRT analysis of the SCFN impedance spectra from real experiment. Also the real EIS data is read from a csv file, the DRT is predicted by the fGP-DRT model, the real and imaginary components of the impedance are recovered and compared with the 2ZARCs ECM. 
+1. **ex1_single ZARC Model.ipynb**: this notebook gives detail procedure of how to recover the DRT from the impedance generated using a single ZARC model consisting of a resistance placed in parallel to a constant phase element (CPE) The frequency range is from 1E-4 Hz to 1E4 Hz with 10 points per decade (ppd).
+2. **ex2_double ZARC Model.ipynb** : this notebook demonstrates how the fGP-DRT can capture overlapping timescales with two ZARC models arranged in series. The frequency range is from 1E-4 Hz to 1E4 Hz with 10 ppd.
+3. **ex3_single_ZARC_plus_an_inductor.pynb** : this notebook adds an inductor to the model used in "**example1_single ZARC Model.ipynb**"
+4. **ex4_BLF_pO2_60percent_Temp_500_C.ipynb** : this notebook displays the DRT analysis of the BLF impedance spectra from fuel cell. The real experimental EIS data is read from a csv file, the DRT is predicted by the fGP-DRT model, the complete impedance is, therefore, recovered and compared with the equivalent circuit model (ECM) consisting of two ZARCs
+5. **ex5_SCFN_3percent_H2O_Temp_500_C.ipynb** : this notebook shows the DRT analysis of the SCFN impedance spectra from real experiment. Also the real EIS data is read from a csv file, the DRT is predicted by the fGP-DRT model, the real and imaginary components of the impedance are recovered and compared with the 2ZARCs ECM. 
 
 # Citation
 
