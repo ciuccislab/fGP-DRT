@@ -6,7 +6,6 @@ from numpy.linalg import cholesky
 from numpy.matlib import repmat
 from math import pi, log, exp
 from numpy import linalg as la
-from numpy import *
 
 def kernel(log_tau, log_tau_prime, sigma_f, ell):
 
@@ -149,7 +148,12 @@ def compute_A_im(freq_vec, tau_vec):
 #"""
 
 def is_PD(A):
-      
+
+    A = np.asarray(A)
+    if (A.size == 0 or A.ndim != 2 or A.shape[0] != A.shape[1]
+            or not np.all(np.isfinite(A)) or not np.allclose(A, A.T)):
+        return False
+
     try:
         np.linalg.cholesky(A)
         return True
@@ -158,7 +162,9 @@ def is_PD(A):
 
 
 def nearest_PD(A):
-    
+
+    A = np.asarray(A)
+
     # based on 
     # N.J. Higham (1988) https://doi.org/10.1016/0024-3795(88)90223-6
     # and 
@@ -181,7 +187,9 @@ def nearest_PD(A):
         # MATLAB's 'chol' accepts matrices with eigenvalue = 0, numpy does not not. 
         # So where the matlab implementation uses 'eps(mineig)', we use the above definition.
 
-        min_eig = min(0, np.min(np.real(np.linalg.eigvals(A_symm))))
+        min_eig = float(
+            np.minimum(0.0, np.linalg.eigvalsh(A_symm)[0])
+        )
         A_symm += I * (-min_eig * k**2 + eps)
         k += 1
 
@@ -332,7 +340,7 @@ def generate_tmg(F, g, M, mu_r, initial_X, cov=True, L=1):
     nearzero = 1E-12
 
     # more for debugging purposes
-    if (F@initial_X + g).any() < 0:
+    if np.any(F @ initial_X + g <= 0):
         print("Error: inconsistent initial condition")
         return
 
@@ -424,7 +432,7 @@ def generate_tmg(F, g, M, mu_r, initial_X, cov=True, L=1):
             
             bounce_count += 1
 
-        if (F@X +g).all() > 0:
+        if np.all(F @ X + g > 0):
             Xs[:,i-1] = X
             last_X = X
             i = i+1
